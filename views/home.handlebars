@@ -1,0 +1,41 @@
+{{! views/home.handlebars }}
+
+{{#layout 'main'}}
+  {{#contentFor 'title'}}
+    Welcome to My Blog
+  {{/contentFor}}
+
+  <div class="container">
+    <div class="row">
+      <div class="col-md-8 offset-md-2">
+        <h2>Welcome to My Blog</h2>
+
+        {{#if isAuthenticated}}
+          <p>Hello, {{currentUser.username}}!</p>
+          <p>What's on your mind? <a href="/new">Create a new blog post</a>.</p>
+        {{else}}
+          <p>Welcome! Please <a href="/login">log in</a> or <a href="/signup">sign up</a> to start sharing your thoughts.</p>
+        {{/if}}
+
+        {{#if blogPosts.length}}
+          <h3>Recent Blog Posts</h3>
+          <ul class="blog-posts">
+            {{#each blogPosts}}
+              <li>
+                <div class="post-title">
+                  <a href="/posts/{{id}}">{{title}}</a>
+                </div>
+                <div class="post-meta">
+                  <span class="post-date">Posted on {{formatDate createdAt}}</span>
+                  <span class="post-author">by {{User.username}}</span>
+                </div>
+              </li>
+            {{/each}}
+          </ul>
+        {{else}}
+          <p>No blog posts found.</p>
+        {{/if}}
+      </div>
+    </div>
+  </div>
+{{/layout}}

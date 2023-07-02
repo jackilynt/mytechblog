@@ -1,0 +1,45 @@
+{{! views/dashboard.handlebars }}
+
+{{#layout 'main'}}
+  {{#contentFor 'title'}}
+    Dashboard - My Blog
+  {{/contentFor}}
+
+  <div class="container">
+    <div class="row">
+      <div class="col-md-8 offset-md-2">
+        <h2>Dashboard</h2>
+
+        <div class="create-post">
+          <a href="/new" class="btn btn-primary">Create New Post</a>
+        </div>
+
+        {{#if blogPosts.length}}
+          <h3>My Blog Posts</h3>
+          <ul class="blog-posts">
+            {{#each blogPosts}}
+              <li>
+                <div class="post-title">
+                  <a href="/posts/{{id}}">{{title}}</a>
+                </div>
+                <div class="post-meta">
+                  <span class="post-date">Posted on {{formatDate createdAt}}</span>
+                  <span class="post-edit">
+                    <a href="/edit/{{id}}">Edit</a>
+                  </span>
+                  <span class="post-delete">
+                    <form action="/delete/{{id}}" method="POST">
+                      <button type="submit" class="btn btn-link">Delete</button>
+                    </form>
+                  </span>
+                </div>
+              </li>
+            {{/each}}
+          </ul>
+        {{else}}
+          <p>No blog posts found.</p>
+        {{/if}}
+      </div>
+    </div>
+  </div>
+{{/layout}}
