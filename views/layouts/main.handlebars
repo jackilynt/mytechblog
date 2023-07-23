@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+{{!-- <!DOCTYPE html>
 <html lang="en">
 
 <head>
@@ -15,6 +15,45 @@
   {{> footer}}
 
   <script src="/js/main.js"></script>
+</body>
+
+</html> --}}
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>RecipMe</title>
+  <link rel="stylesheet" type="text/css" href="/css/jass.css">
+  <link rel="stylesheet" type="text/css" href="/css/style.css">
+  <!-- TODO: Bootstrap link src -->
+</head>
+
+<body>
+  <header>
+    <h1>Welcome to Blog Post</h1>
+  </header>
+  <nav id="navbar">
+    <a href="/">Home</a>
+    {{#if loggedIn}}
+    <button id="logout" class="btn-no-style">Logout</button>
+    {{else}}
+    <a href="/login">Login</a>
+    {{/if}}
+    {{!-- <a href="/about">About</a>
+    <a href="/contact">Contact</a> --}}
+  </nav>
+  <main>
+ 
+    <div class="recipe">
+      {{{body}}}
+    </div>
+  </main>
+  {{#if loggedIn}}
+  <script src="/js/logout.js"></script>
+  {{/if}}
 </body>
 
 </html>
