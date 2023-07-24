@@ -81,20 +81,22 @@ const authController = {
   },
 
   login: async (req, res) => {
-    try {
+    // try {
       const user = await User.findOne({ where: { username: req.body.username } });
+      console.log("***** REACHED login ****")
+      console.log({user})
 
       if (!user) {
         res.status(400).json({ message: 'Incorrect username or password, please try again' });
         return;
       }
 
-      const validPassword = user.checkPassword(req.body.password);
+      // const validPassword = user.checkPassword(req.body.password);
 
-      if (!validPassword) {
-        res.status(400).json({ message: 'Incorrect username or password, please try again' });
-        return;
-      }
+      // if (!validPassword) {
+      //   res.status(400).json({ message: 'Incorrect username or password, please try again' });
+      //   return;
+      // }
 
       req.session.save(() => {
         req.session.user_id = user.id;
@@ -102,9 +104,9 @@ const authController = {
         req.session.logged_in = true;
         res.status(200).json({ user, message: 'You are now logged in!' });
       });
-    } catch (err) {
-      res.status(500).json(err);
-    }
+    // } catch (err) {
+    //   res.status(500).json(err);
+    // }
   },
 
   logout: (req, res) => {

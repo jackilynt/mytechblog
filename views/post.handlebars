@@ -1,0 +1,68 @@
+<section>
+    <div>
+        <div>
+            <div>
+                <div>
+                    <figure>
+                        <img src="../images/first-post.png" alt="placeholder image" />
+                    </figure>
+                </div>
+            </div>
+            <section>
+                <div>
+                    <div>
+                        <div>
+                            <h1>{{postData.title}}</h1>
+                            <h6>by {{postData.user.username}}</h6>
+                            <p>{{postData.content}}</p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+            <div>
+                <div>
+                    <div>
+                        <label>Comment:</label>
+                    </div>
+                    <div>
+                        <div>
+                            <div>
+                                <textarea placeholder="What are your thoughts on this blog post?"></textarea>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div>
+                    <div>
+                        <!-- Left empty for spacing -->
+                    </div>
+                    <div>
+                        <div>
+                            <div>
+                                <button>
+                                    Submit
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div id="comment-section">
+                {{#each postData.comments as |cmt|}}
+                <article>
+                    <div>
+                        {{cmt.content}}
+                        <p><strong>- {{cmt.user.username}}</strong>
+                            {{#if ../loggedInUserData.isAdmin}}
+                            (<span data-id="{{cmt.id}}">Delete</span>)
+                            {{/if}}
+                        </p>
+                    </div>
+                </article>
+                {{/each}}
+            </div>
+        </div>
+    </div>
+    <div>{{postData.id}}</div>
+</section>
+<script src="/js/post.js"></script>
